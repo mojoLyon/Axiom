@@ -1,0 +1,21 @@
+{
+    "name": "mojolyon/axiom",
+    "description": "Business rule management system",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stéphane Reuille",
+            "email": "stephane.reuille@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "atoum/atoum" : "dev-master"
+    },
+    "autoload": {
+        "psr-0": {"MojoLyon\\Axiom": "src/"}
+    }
+}
