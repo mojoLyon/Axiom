@@ -8,7 +8,7 @@ class Rule extends atoum
 {
     public function testSetter()
     {
-        $rule = new base();
+        $rule = new base('ruletest');
         $this->object($rule->proposition('test', true))
                 ->isInstanceOf('MojoLyon\Axiom\Rule')
              ->object($rule->variable('test2', 'val'))
@@ -17,16 +17,18 @@ class Rule extends atoum
                 ->isInstanceOf('MojoLyon\Axiom\Rule')
             ->object($rule->add(new \MojoLyon\Axiom\RuleElement\DateVariable('date', new \DateTime())))
                 ->isInstanceOf('MojoLyon\Axiom\Rule')
+            ->string($rule->getName())
+                ->isEqualTo('ruletest')
         ;
     }
 
     public function testEvaluateBadContext()
     {
-        $rule = new base();
+        $rule = new base('ruletest');
         $rule->proposition('test', true)
              ->variable('test2', 'test2');
 
-        $context = new \MojoLyon\Axiom\Context();
+        $context = new \MojoLyon\Axiom\Context('ruletest');
         $context->proposition('test', false)
                 ->proposition('test2', true);
 
@@ -40,7 +42,7 @@ class Rule extends atoum
 
     public function testEvaluate()
     {
-        $rule = new base();
+        $rule = new base('ruletest');
         $rule->proposition('test', true)
              ->proposition('test2', true)
              ->proposition('test3', true)
@@ -48,7 +50,7 @@ class Rule extends atoum
              ->operator('and')
         ;
 
-        $context = new \MojoLyon\Axiom\Context();
+        $context = new \MojoLyon\Axiom\Context('ruletest');
         $this->object($result = $rule->evaluate($context))
                 ->isInstanceOf('\MojoLyon\Axiom\RuleElement\Proposition')
              ->string($result->getName())

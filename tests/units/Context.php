@@ -6,8 +6,10 @@ use MojoLyon\Axiom\Context as base;
 class Context extends atoum{
     public function testContext()
     {
-        $context = new base();
-        $this->object($context->proposition('proposition 1', true))
+        $context = new base('ruletest');
+        $this->string($context->getName())
+                ->isEqualTo('ruletest')
+             ->object($context->proposition('proposition 1', true))
                 ->isInstanceOf('MojoLyon\Axiom\Context')
              ->object($context->variable('variable 1', 'valeur var 1'))
                 ->isInstanceOf('MojoLyon\Axiom\Context')

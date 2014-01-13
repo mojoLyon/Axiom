@@ -32,11 +32,30 @@ class Rule
     private $stack;
 
     /**
-     * Constructor
+     * Rule's name
+     * @var string
      */
-    public function __construct() {
+    private $name;
+
+    /**
+     * Constructor
+     *
+     * @param string $name Rule's name
+     */
+    public function __construct($name) {
         $this->elements = array();
         $this->stack = array();
+        $this->name = (string) $name;
+    }
+
+    /**
+     * Getter for rule's name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
