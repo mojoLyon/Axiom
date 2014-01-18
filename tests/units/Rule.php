@@ -68,4 +68,23 @@ class Rule extends atoum
                 ->isFalse()
         ;
     }
+
+    public function testBadEvaluation()
+    {
+        $badOperator = new \mock\MojoLyon\Axiom\RuleElement\Operator('and');
+        $badOperator->getMockController()->__invoke = function() { return 'bad thing';};
+        $rule = new base('ruletest');
+        $rule->proposition('test', true)
+            ->proposition('test2', true)
+            ->proposition('test3', true)
+            ->operator('or')
+            ->add($badOperator)
+        ;
+
+        $context = new \MojoLyon\Axiom\Context('ruletest');
+        $this->exception(function() use ($rule, $context) { $rule->evaluate($context);})
+                ->isInstanceOf('\LogicException')
+                ->hasMessage('Operator must return a proposition')
+        ;
+    }
 } 
