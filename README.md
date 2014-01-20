@@ -1,4 +1,4 @@
-# Axiom
+# Axiom [![Build Status](https://travis-ci.org/mojoLyon/Axiom.png?branch=master)](https://travis-ci.org/mojoLyon/Axiom)
 
 ## a simple business rule management system for php
 
